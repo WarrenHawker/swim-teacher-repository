@@ -1,3 +1,6 @@
+@import url('./components/header.css');
+@import url('./variables/colors.css');
+
 *, *::after, *::before {
   box-sizing: border-box;
 }
@@ -5,6 +8,8 @@
 body {
   margin: 0;
   max-width: 1500px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: var(--color-white);
 }
 
 img, iframe, picture {

@@ -1,0 +1,21 @@
+header {
+    background-color: var(--color-blue);
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+}
+
+header a {
+    text-decoration: none;
+    color: var(--color-white);
+    margin-right: 1em;
+  
+}
+
+header a:hover, header a:focus {
+   color: var(--color-black);
+}
+
+header h2 {
+    margin: 0;
+}
