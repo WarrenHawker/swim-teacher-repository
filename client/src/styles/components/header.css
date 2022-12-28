@@ -1,26 +1,27 @@
 header {
-    background-color: var(--color-blue);
-    padding: 1em;
-    
+  background-color: var(--color-green);
+  padding: 1em;
 }
 
 .header-inner {
-    display: flex;
-    justify-content: space-between;
-    max-width: 1000px;
-    margin: auto;
+  display: flex;
+  justify-content: space-between;
+  max-width: 1000px;
+  margin: auto;
 }
 
 header a {
-    text-decoration: none;
-    color: #ffffff;
-    margin-right: 1em;
+  text-decoration: none;
+  color: #ffffff;
+  margin-right: 1em;
+  /* color: var(--color-blue); */
 }
 
-header a:hover, header a:focus {
-   color: #000000;
+header a:hover,
+header a:focus {
+  color: #000000;
 }
 
 header h2 {
-    margin: 0;
+  margin: 0;
 }
