@@ -1,24 +1,30 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { useAuth } from '../context/authContext';
+import { useLogout } from '../hooks/useLogout';
 
 const Header = () => {
-  const user = "ljklkj";
+  const { user } = useAuth();
+  const { logout } = useLogout();
+  console.log(user);
   return (
     <header>
-      <div className="header-inner">
-        <Link to="/">
+      <div className='header-inner'>
+        <Link to='/'>
           <h2>SwimHub</h2>
         </Link>
 
         {!user ? (
           <nav>
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Signup</Link>
+            <Link to='/login'>Login</Link>
+            <Link to='/signup'>Signup</Link>
           </nav>
         ) : (
           <nav>
             {/* dashboard link shows user name */}
-            <Link to="/dashboard">Hello, {user}</Link>
-            <Link to="/">Logout</Link>
+            <Link to='/dashboard'>Hello, {user.name}</Link>
+            <Link to='/' onClick={logout}>
+              Logout
+            </Link>
           </nav>
         )}
       </div>
