@@ -9,7 +9,6 @@ import { useAuth } from './context/authContext';
 
 const App = () => {
   const { user } = useAuth();
-  console.log('app: ', user);
   return (
     <BrowserRouter>
       <Header />

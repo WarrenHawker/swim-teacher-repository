@@ -5,7 +5,6 @@ import { useLogout } from '../hooks/useLogout';
 const Header = () => {
   const { user } = useAuth();
   const { logout } = useLogout();
-  console.log(user);
   return (
     <header>
       <div className='header-inner'>
