@@ -1,13 +1,18 @@
 import { strokes, stages, types } from '../searchParams';
 import { useState } from 'react';
+import { useAuth } from '../context/authContext';
 
 const CreatePost = () => {
   const [selectedStroke, setSelectedStroke] = useState(null);
   const [selectedStages, setSelectedStages] = useState(stages);
-  const [selectedtype, setSelectedType] = useState(null);
+  const [selectedType, setSelectedType] = useState(null);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [teachingPoints, setTeachingPoints] = useState(['']);
+  const [error, setError] = useState(null);
+  const [emptyFields, setEmptyFields] = useState([]);
+  const { user } = useAuth();
+  console.log();
 
   const strokesDisplay = strokes.map((stroke) => {
     return (
@@ -72,8 +77,6 @@ const CreatePost = () => {
     );
   });
 
-  console.log(teachingPoints);
-
   const addTeachingPoint = (e) => {
     e.preventDefault();
     setTeachingPoints((prevState) => [...prevState, '']);
@@ -119,7 +122,38 @@ const CreatePost = () => {
 
   const createNewPost = async (e) => {
     e.preventDefault();
-    const response = await fetch();
+    const response = await fetch('http://localhost:5000/api/entries', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        //prettier-ignore
+        'Authorization': `Bearer ${user.token}`,
+      },
+      body: JSON.stringify({
+        title,
+        selectedStages,
+        selectedStroke,
+        selectedType,
+        description,
+        teachingPoints,
+      }),
+    });
+    const json = await response.json();
+    if (!response.ok) {
+      setError(json.error);
+      setEmptyFields(json.emptyFields);
+    }
+
+    if (response.ok) {
+      setTitle('');
+      setSelectedStages(stages);
+      setSelectedStroke(null);
+      setSelectedType(null);
+      setDescription('');
+      setTeachingPoints(['']);
+      setError(null);
+      setEmptyFields([]);
+    }
   };
 
   return (
@@ -160,6 +194,7 @@ const CreatePost = () => {
           {teachingPointsDisplay}
           <button onClick={addTeachingPoint}>add new teaching point</button>
         </fieldset>
+        <button>Create Post</button>
       </form>
     </>
   );

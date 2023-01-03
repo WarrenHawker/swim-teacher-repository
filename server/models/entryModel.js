@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Schema = mongoose.Schemal;
+const Schema = mongoose.Schema;
 
 const entrySchema = new Schema(
   {
@@ -22,8 +22,9 @@ const entrySchema = new Schema(
     teachingPoints: {
       type: Array,
     },
-    isExercise: {
-      type: Boolean,
+    type: {
+      //exercise or tip
+      type: String,
       required: true,
     },
     user_id: {
